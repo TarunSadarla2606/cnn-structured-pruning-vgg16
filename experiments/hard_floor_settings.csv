@@ -1,0 +1,33 @@
+,,Hard Floors - Min. Survivors,,,,,,,,,,,
+,,Aggresive S1,,Medium S2,,Safe S3,,Safest S4,,Local Approach S5,,Local Approach S6,
+Layer / Block ,Channels,Survivors,Prunable,Survivors,Prunable,Survivors,Prunable,Survivors,Prunable,Survivors,Prunable,Survivors,Prunable
+B5 / L5,512,160,352,160,352,192,320,208,304,256,256,256,256
+B4 / L4,512,96,416,128,384,160,352,192,320,256,256,256,256
+B3 / L3,256,160,96,192,64,192,64,224,32,192,64,160,96
+ B2 / L2 ,128,96,32,112,16,112,16,112,16,112,16,96,32
+B1 / L1,64,56,8,56,8,60,4,60,4,60,4,56,8
+Channels,1472,568,904,648,824,716,756,796,676,876,596,824,648
+,,,61.4%,,56.0%,,51.4%,,45.9%,,40.5%,,44.0%
+,,,,,,,,,,,,,
+,local cnn celA,,,done (re-run),,,,,,done,,,
+,local vgg celA,,,done (re-run),,,,,,done,,,
+,,,,,,,,,,,,,
+,global cnn celA,done,,done,,done,,,,,,,
+high ram,global vgg celA,,,done,,,,,,,,,
+,,,,,,,,,,,,,
+,global cnn cifar,,,done (relaxed),,done,,done,,,,,
+high ram,global vgg cifar,,,done (relaxed),,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,relaxed case cifar,,,,,,,,,,,,
+cum overall,-/+ 3%,,,,,,,,,,,,
+cum per class,-/+9%,,,,,,,,,,,,
+,,,,,,,,,,,,,
+step overall,-/+ 1.5%,,,,,,,,,,,,
+step per class,-/+ 4.5 %,,,,,,,,,,,,
+,,,,,,,,,,,,,
+warn overall,2.50%,,,,,,,,,,,,
+warn per class,5%,,,,,,,,,,,,

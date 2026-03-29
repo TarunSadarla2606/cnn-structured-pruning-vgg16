@@ -1,0 +1,30 @@
+# Datasets — never commit raw data
+data/celeba/
+data/cifar10/
+*.jpg
+*.png
+!results/figures/*.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.env
+venv/
+env/
+*.egg-info/
+
+# Model checkpoints
+*.pth
+*.pt
+*.pkl
+*.gz
+
+# Colab / Drive artifacts
+*.json
+!results/*.json
+
+# OS
+.DS_Store
+Thumbs.db
