@@ -270,9 +270,23 @@ Each convolutional block has a hard floor — a minimum number of surviving chan
 
 ## Background: The Research Origin
 
-This directed study was initiated based on an observation from a previous student in Prof. Pears' group, who found that filtering redundancy in CNN feature maps could be systematically exploited for compression. The original proposal focused on IoU-based similarity between feature maps. This study formalized the approach into a structured pruning framework with explicit accuracy guard rails, compared two paradigms (local vs. global), and introduced the Hybrid Crossover as a novel alternative to standard channel dropping.
+### Ashwini Sharma's Prior Work — The Founding Observation
 
-The weekly research log (`docs/weekly-reports/directed_study_weekly_log.pdf`) documents the full intellectual trajectory of the project: Week 1 (cosine similarity + medoid clustering), Week 2 (stopping criteria problem), Week 3 (correction-probability breakthrough), Week 4 (differentiation of student tracks), through to the final multi-signal global scoring system and the Hybrid Crossover results.
+This directed study was directly motivated by findings from **Ashwini Sharma**, a former MS thesis student of Prof. Russel Pears at UNT. In his thesis research (code and thesis available [here](https://drive.google.com/drive/folders/1s6zxkvT8qTnh8kvPToem1MN7Os8ACOEF?usp=sharing)), Ashwini studied a gender classification task using the CelebA dataset on a custom 5-layer CNN. His key finding was striking: **not all feature maps in the final convolutional layer were necessary for the classification task**. Under the specific conditions of his experiment, only a small subset of feature maps contributed meaningfully to the model's predictions — the rest were largely redundant.
+
+This observation opened a natural question: if redundant feature maps exist, can they be identified and removed in a principled, data-driven way — and how much efficiency can be recovered without sacrificing accuracy?
+
+### The Initial Framework — Prof. Pears' Research Overview
+
+The founding document Prof. Pears shared at the start of this directed study (see `docs/weekly-reports/cnn_training_time_reduction_notes.pdf`) laid out the motivation and initial methodology. It identified the key problem with existing approaches to CNN efficiency:
+
+- **Transfer learning** reduces training time but is limited to a handful of standard architectures and requires tuning a hyperparameter (which layer to freeze) that directly trades away its benefits.
+- **1×1 convolutional filters** reduce computation but only work in architectures that already use them.
+- **Ad-hoc channel/layer restriction** can reduce cost but is entirely arbitrary — there is no principled way to choose how many channels to remove, and no control over the accuracy impact.
+
+The proposed alternative: **remove only those filters that can be statistically proven to be redundant** based on the data itself. The initial method used IoU (Intersection over Union) across pairs of feature maps — after thresholding each map to retain only its top 5% brightest pixels — and a statistical test to determine whether two feature maps were encoding essentially the same information. If so, only one needed to remain.
+
+This IoU-based similarity approach became the intellectual seed from which the entire project grew. Over the course of the directed study (documented week by week in `docs/weekly-reports/directed_study_weekly_log.pdf`), it evolved through: cosine similarity replacing IoU (Week 1), a correction-probability stopping criterion (Week 3), the differentiation of Local HC vs. Global paradigms (Week 4), the introduction of multi-signal ILR scoring, accuracy guard rails, and ultimately the Hybrid Crossover merging strategy introduced in this work.
 
 ---
 
